@@ -1,0 +1,21 @@
+127.0.0.1	localhost
+127.0.1.1   hostname
+
+# The following lines are desirable for IPv6 capable hosts
+::1     localhost ip6-localhost ip6-loopback
+ff02::1 ip6-allnodes
+ff02::2 ip6-allrouteris
+
+# Servidores
+192.168.10.101  gateway.guaruhost.g00.br        gateway
+192.168.10.102  datacenter.guaruhost.g00.br     datacenter
+192.168.10.103  intranet.guaruhost.g00.br       intranet
+192.168.10.103  www.guaruhost.g00.br
+192.168.10.104  storage.guaruhost.g00.br        storage
+192.168.10.105  aplicacao.guaruhost.g00.br      aplicacao
+
+#Homologacao
+192.168.10.61   homologacao.guaruhost.g00.br    homologacao
+
+#Operacao
+192.168.10.51    operacao.alphahost.br   operacao
