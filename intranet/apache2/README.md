@@ -24,7 +24,7 @@ ssl
 2. Modulos que devem ser desabilitados: (Talvez precise forçar)
 deflate
 
-3. Os arquivos de configuração versão 1.0
+3. Os arquivos de configuração versão 220
 apache2.conf, security.conf
 
 4. O arquivo do VirtualHostt versão 1.0 
