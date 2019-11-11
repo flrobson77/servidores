@@ -84,6 +84,7 @@ done
 
 # Habilita a consulta DNS para os hosts interno da rede
 iptables -A INPUT -p udp -s $LAN --sport $PTS -d $GTW --dport 53 -j ACCEPT
+iptables -A INPUT -p tcp -s $LAN --sport $PTS -d $GTW --dport 53 -j ACCEPT
 iptables -A INPUT -p udp -s $LAN --sport $PTS -d $WEB --dport 53 -j ACCEPT
 iptables -A INPUT -p udp -s $LAN --sport $PTS -d $GTW --dport 123 -j ACCEPT
 
@@ -150,7 +151,7 @@ for CHAINS in INPUT FORWARD
 do
 	for PORTAS in 21 22 23 25 110 139 143 3128 3306 3389 5432 5900 8080
 	do
-	      iptables -A $CHAINS -p tcp --dport $PORTAS -j LOG --log-prefix "LOG_$PORTAS "
+	      iptables -A $CHAINS -p tcp --dport $PORTAS -j LOG --log-prefix "LOG_$PORTAS:"
 	done
 done
 

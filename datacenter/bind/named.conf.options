@@ -1,0 +1,31 @@
+options {
+	//Diretorio dos arquivos de zonas
+    directory "/etc/bind/cache";
+    
+    //Desabilitando a divulgacao da versão do bind
+    version "Nao tem privilegios nesta informacao";
+	
+    //Habilita aonde o servidor busca se não encontrar o dominio
+    //forwarders { 4.2.2.2; };
+    
+    //Habilita o DNSSEC
+	dnssec-validation auto;
+
+	//conforme a RFC1035
+    auth-nxdomain no;
+    
+    //Determiando quem pode usar esse servidor para pesquisa
+    allow-query { 200.0.0.230; 203.0.113.0/24; 127.0.0.1; };
+
+    //Criando a excessao de quem pode fazer uso do DNS como recursividade
+    allow-recursion { 203.0.113.0/24; 127.0.0.1; };
+
+    //Quem pode realizar transferência de zona
+    allow-transfer { 127.0.0.1; 203.0.113.101; 203.0.113.102; };
+
+    //Notifica ao secundario da transferencia
+    notify yes;
+
+    //habilitar a resolucao de endereco DNS
+	listen-on-v6 { any; };
+};

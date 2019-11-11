@@ -1,0 +1,31 @@
+include "/etc/bind/rndc.key";
+controls {
+    inet 127.0.0.1 port 953 allow { localhost; } keys { "rndc-key"; };
+};
+
+acl "hospedif" {
+    203.0.113.0/24;
+};
+
+view "externa" {
+    match-clients { !hospedif; any; };
+    zone "hospedif.gru.br" {
+        type master;
+        file "db/db.hospedif.ext";
+    };
+    zone "0.0.200.in-addr.arpa" {
+        type master;
+        file "rv/rev.hospedif.ext";
+    };
+};
+view "interna" {
+    match-clients { hospedif; any; };
+    zone "hospedif.gru.br" {
+        type master;
+        file "db/db.hospedif.int";
+    };
+    zone "113.0.203.in-addr.arpa" {
+    type master;
+    file "rv/rev.hospedif.int";
+    };
+};
