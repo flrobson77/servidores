@@ -1,0 +1,49 @@
+include "/etc/bind/rndc.key";
+controls {
+    inet 127.0.0.1 port 953 allow { localhost; } keys { "rndc-key"; };
+};
+
+acl "hospedra" {
+    203.0.113.0/24;
+};
+
+acl "dra" {
+   203.0.113.0/24;
+};
+
+view "externa" {
+    match-clients { !hospedra; !dra; any; };
+    zone "hospedra.gru.br" {
+      type slave;
+      file "db/db.hospedra.ext";
+      masters { 203.0.113.101; };
+    };
+    zone "dra.adv.br" {
+      type slave;
+      file "db/db.dra.ext";
+      masters { 203.0.113.101; };
+    };
+    zone "0.0.200.in-addr.arpa" {
+      type slave;
+      file "rv/rv.200.0.0.ext";
+      masters { 203.0.113.101; };
+    };
+};
+view "interna" {
+    match-clients { hospedra; dra; any; };
+    zone "hospedra.gru.br" {
+      type slave;
+      file "db/db.hospedra.int";
+      masters { 203.0.113.101; };
+    };
+    zone "dra.adv.br" {
+      type slave;
+      file "db/db.dra.int";
+      masters { 203.0.113.101; };
+    };
+    zone "113.0.203.in-addr.arpa" {
+      type slave;
+      file "rv/rv.203.0.113.int";
+      masters { 203.0.113.101; };
+    };
+};

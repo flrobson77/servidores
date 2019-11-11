@@ -1,0 +1,33 @@
+$ORIGIN .
+$TTL 0	; 0 seconds
+@			IN SOA	. . (
+				71         ; serial
+				0          ; refresh (0 seconds)
+				0          ; retry (0 seconds)
+				0          ; expire (0 seconds)
+				0          ; minimum (0 seconds)
+				)
+			KEYDATA	20191111050617 20190924030057 19700101000000 257 3 8 (
+				AwEAAaz/tAm8yTn4Mfeh5eyI96WSVexTBAvkMgJzkKTO
+				iW1vkIbzxeF3+/4RgWOq7HrxRixHlFlExOLAJr5emLvN
+				7SWXgnLh4+B5xQlNVz8Og8kvArMtNROxVQuCaSnIDdD5
+				LKyWbRd2n9WGe2R8PzgCmr3EgVLrjyBxWezF0jLHwVN8
+				efS3rCj/EWgvIWgb9tarpVUDK/b58Da+sqqls3eNbuv7
+				pr+eoZG+SrDK6nWeL3c6H5Apxz7LjVc1uTIdsIXxuOLY
+				A4/ilBmSVIzuDWfdRUfhHdY6+cn8HFRm+2hM8AnXGXws
+				9555KrUB5qihylGa8subX2Nn6UwNR1AkUTV74bU=
+				) ; KSK; alg = RSASHA256; key id = 20326
+				; next refresh: Mon, 11 Nov 2019 05:06:17 GMT
+				; trusted since: Tue, 24 Sep 2019 03:00:57 GMT
+dlv.isc.org		KEYDATA	20191111050617 20190924030059 19700101000000 257 3 5 (
+				BEAAAAPHMu/5onzrEE7z1egmhg/WPO0+juoZrW3euWEn
+				4MxDCE1+lLy2brhQv5rN32RKtMzX6Mj70jdzeND4XknW
+				58dnJNPCxn8+jAGl2FZLK8t+1uq4W+nnA3qO2+DL+k6B
+				D4mewMLbIYFwe0PG73Te9fZ2kJb56dhgMde5ymX4BI/o
+				Q+cAK50/xvJv00Frf8kw6ucMTwFlgPe+jnGxPPEmHAte
+				/URkY62ZfkLoBAADLHQ9IrS2tryAe7mbBZVcOwIeU/Rw
+				/mRx/vwwMCTgNboMQKtUdvNXDrYJDSHZws3xiRXF1Rf+
+				al9UmZfSav/4NWLKjHzpT59k/VStTDN0YUuWrBNh
+				) ; KSK; alg = RSASHA1; key id = 19297
+				; next refresh: Mon, 11 Nov 2019 05:06:17 GMT
+				; trusted since: Tue, 24 Sep 2019 03:00:59 GMT
