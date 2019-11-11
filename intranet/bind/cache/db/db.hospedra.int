@@ -1,24 +1,25 @@
 $TTL 7200   ; default para registros sem TTL
 ;
-@   IN  SOA ns1.hospedif.gru.br.   sysadmin.hospedif.gru.br.  (
-    2019092201  ; serial - Deve ser alterado sempre que houver entrada
+@   IN  SOA ns1.hospedra.gru.br.   sysadmin.hospedra.gru.br.  (
+    2019111001  ; serial - Alterar sempre que houver entrada
             8h  ; refresh - Tempo de atualizacao com slave
             1h  ; retry - Tempo para tentar caso nao tenha resposta
             3d  ; expire - Tempo para expirar e parar de responder
             3h  ; negative caching TTL - 
 );
 ;
-@           IN      NS      ns1.hospedif.gru.br.
-@           IN      NS      ns2.hospedif.gru.br.
-@           IN      MX      10  mail.hospedif.gru.br.
+@           IN      NS      ns1.hospedra.gru.br.
+@           IN      NS      ns2.hospedra.gru.br.
+@           IN      MX      10  mail.hospedra.gru.br.
 @           IN      A       203.0.113.101
 @           IN      A       203.0.113.102
 ns1         IN      A       203.0.113.101
 ns2         IN      A       203.0.113.102
 www         IN      A       203.0.113.102
 mail        IN      A       203.0.113.102
-ftp         IN      CNAME   www.hospedif.gru.br.
-smtp        IN      CNAME   mail.hospedif.gru.br.
-webmail     IN      CNAME   mail.hospedif.gru.br.
+ftp         IN      CNAME   www.hospedra.gru.br.
+smtp        IN      CNAME   mail.hospedra.gru.br.
+webmail     IN      CNAME   mail.hospedra.gru.br.
 gateway     IN      A       203.0.113.101
-intranet    IN      A       203.0.113.102    
+intranet    IN      A       203.0.113.102
+operacao    IN      A       203.0.113.51

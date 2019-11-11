@@ -21,7 +21,8 @@ options {
     allow-recursion { 203.0.113.0/24; 127.0.0.1; };
 
     //Quem pode realizar transferência de zona
-    allow-transfer { 127.0.0.1; 203.0.113.101; 203.0.113.102; };
+    //allow-transfer { 127.0.0.1; 203.0.113.101; 203.0.113.102; };
+    allow-transfer { key TRANSFER; };
 
     //Notifica ao secundario da transferencia
     notify yes;

@@ -1,0 +1,19 @@
+$TTL 7200   ; default para registros sem TTL
+;
+@   IN  SOA ns1.dra.adv.br. sysadmin.dra.adv.br.    (
+    2019111000  ; serial - Alterar sempre que houver nova entrada
+            8h  ; refresh - Tempo de atualizacao com slave
+            1h  ; retry - Tempo para tentar caso nao tenha resposta
+            3d  ; expire - Tempo para expirar e parar de responder
+            3h  ; negative caching TTL 
+);
+;
+@       IN      NS      ns1.dra.adv.br.
+@       IN      NS      ns2.dra.adv.br.
+@       IN      MX      10  mail.dra.adv.br.
+@       IN      TXT     "v=spf1 a mx ip4:200.0.0.231 -all"
+@       IN      A       200.0.0.230
+ns1     IN      A       200.0.0.230
+ns2     IN      A       200.0.0.231
+www     IN      A       200.0.0.231
+ftp     IN      CNAME   www

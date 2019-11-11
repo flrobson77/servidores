@@ -3,29 +3,46 @@ controls {
     inet 127.0.0.1 port 953 allow { localhost; } keys { "rndc-key"; };
 };
 
-acl "hospedif" {
+acl "hospedra" {
+    203.0.113.0/24;
+};
+
+acl "dra" {
     203.0.113.0/24;
 };
 
 view "externa" {
-    match-clients { !hospedif; any; };
-    zone "hospedif.gru.br" {
+    match-clients { !hospedra; !dra; any; };
+    zone "hospedra.gru.br" {
         type master;
-        file "db/db.hospedif.ext";
+        file "db/db.hospedra.ext";
     };
+    
+    zone "dra.adv.br" {
+        type master;
+        file "db/db.dra.ext";
+    };
+    
     zone "0.0.200.in-addr.arpa" {
         type master;
-        file "rv/rev.hospedif.ext";
+        file "rv/rv.200.0.0.ext";
     };
 };
+
 view "interna" {
-    match-clients { hospedif; any; };
-    zone "hospedif.gru.br" {
+    match-clients { hospedra; dra; any; };
+    zone "hospedra.gru.br" {
         type master;
-        file "db/db.hospedif.int";
+        file "db/db.hospedra.int";
     };
+    
+    zone "dra.adv.br" {
+        type master;
+        file "db/db.dra.int";
+    };
+    
     zone "113.0.203.in-addr.arpa" {
-    type master;
-    file "rv/rev.hospedif.int";
+        type master;
+        file "rv/rv.203.0.113.int";
     };
 };

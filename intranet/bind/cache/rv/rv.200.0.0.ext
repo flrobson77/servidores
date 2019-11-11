@@ -1,0 +1,23 @@
+$TTL 7200   ; default para registros sem TTL
+;
+@   IN  SOA ns1.hospedra.gru.br.   sysadmin.hospedra.gru.br.  (
+    2019111001  ; serial - Alterar sempre que houver entrada
+            8h  ; refresh - Tempo de atualizacao com slave
+            1h  ; retry - Tempo para tentar caso nao tenha resposta
+            3d  ; expire - Tempo para expirar e parar de responder
+            3h  ; negative caching TTL - 
+);
+;hospedra.gru.br
+@       IN      NS      ns1.hospedra.gru.br.
+@       IN      NS      ns2.hospedra.gru.br.
+@       IN      A       200.0.0.230
+ns1     IN      A       200.0.0.230
+ns2     IN      A       200.0.0.231
+230     IN      PTR     ntp.hospedra.gru.br.
+231     IN      PTR     www.hospedra.gru.br.
+231     IN      PTR     mail.hospedra.gru.br.
+;dra.adv.br
+230     IN      PTR     ntp.dra.adv.br.
+231     IN      PTR     www.dra.adv.br.
+231     IN      PTR     mail.dra.adv.br.
+
