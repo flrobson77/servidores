@@ -1,0 +1,55 @@
+---
+- name: Aplicando alterações de segurança
+  hosts: all
+  tasks:
+    - name: Proteger resolv.conf com somente leitura
+      command: "chattr +i /etc/resolv.conf"
+
+- name: Aplicando alterações de segurança
+  hosts: all
+  tasks:
+    - name: Proteger hosts com somente leitura
+      command: "chattr +i /etc/hosts"
+
+- name: Aplicando alterações de segurança
+  hosts: all
+  tasks:
+    - name: Proteger issue com somente leitura
+      command: "chattr +i /etc/issue"
+
+- name: Aplicando alterações de segurança
+  hosts: all
+  tasks:
+    - name: Proteger issue.net com somente leitura
+      command: "chattr +i /etc/issue.net"
+
+- name: Aplicando alterações de segurança
+  hosts: all
+  tasks:
+    - name: Proteger motd com somente leitura
+      command: "chattr +i /etc/motd"
+
+- name: Aplicando alterações de segurança
+  hosts: all
+  tasks:
+    - name: Proteger hostname com somente leitura
+      command: "chattr +i /etc/hostname"
+
+- name: Aplicando alterações de segurança
+  hosts: all
+  tasks:
+    - name: Proteger sources.list com somente leitura
+      command: "chattr +i /etc/apt/sources.list"
+
+- name: Aplicando alterações de segurança
+  hosts: all
+  tasks:
+    - name: Proteger network/interfaces com somente leitura
+      command: "chattr +i /etc/network/interfaces"
+
+- name: Aplicando alterações de segurança
+  hosts: all
+  tasks:
+    - name: Proteger vimrc com somente leitura
+      command: "chattr +i /etc/vim/vimrc"
+

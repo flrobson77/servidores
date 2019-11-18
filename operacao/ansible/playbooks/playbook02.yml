@@ -1,0 +1,16 @@
+---
+#Meu primeiro playbook
+
+- name: Uniforizar resolv.conf
+  hosts: all
+  tasks:
+     - name: Atualizar resolv.conf
+       copy: src=resolv.conf dest=/etc/resolv.conf
+
+- name: Proteger resolv.conf
+  hosts: all
+  tasks:
+    - name: Proteger resolv.conf com somente leitura
+      command: "chattr +i /etc/resolv.conf"
+
+

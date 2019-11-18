@@ -1,0 +1,52 @@
+---
+#Configuracao padrao do pool gamma.br
+- name: Configuracao de pos instalacao de novo servidor no pool
+  hosts: <host>
+  tasks:
+   - name: Desabilitar a protecao de leitura /etc/resolv.conf
+     command: "chattr -i /etc/resolv.conf"
+
+   - name: Copiar o arquivo com DNS padrao da empresa
+     copy: src=etc/resolv.conf dest=/etc/resolv.conf
+
+   - name: Habilitar a protecao de leitura /etc/resolv.conf
+     command: "chattr +i /etc/resolv.conf"
+
+   - name: Atualizar o inventario do pool
+     copy: src=etc/inventario.txt dest=/tmp/inventario
+
+   - name: Copiando arquivo /etc/motd
+     copy: src=etc/motd dest=/etc/motd
+
+   - name: Copiando arquivo /etc/issue
+     copy: src=etc/issue dest=/etc/issue
+
+   - name: Copiando arquivo /etc/issue.net
+     copy: src=etc/issue.net dest=/etc/issue.net
+
+   - name: Copiando arquivo com repositorios do debian
+     copy: src=etc/sources.list dest=/etc/apt/sources.list
+
+   - name: atualizar o repositorio
+     apt: update_cache=yes
+
+   - name: instalando programas pós instalacao
+     apt: name={{ item }} state=latest
+     with_items:
+      - debian-keyring
+      - cmatrix
+      - build-essential
+      - vim
+      - net-tools
+      - tree
+      - htop
+
+   - name: Copiar o arquivo para personalizar o vim
+     copy: src=etc/vimrc dest=/etc/vim/vimrc
+
+   - name: Tornar o vim o editor de texto padrao
+     alternatives:
+        name: editor
+        path: /usr/bin/vim.basic
+        link: /usr/bin/vim
+        priority: 30

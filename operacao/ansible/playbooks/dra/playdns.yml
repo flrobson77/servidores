@@ -1,0 +1,18 @@
+---
+- name: Desproteger resolv.conf
+  hosts: iottaint iottaapl iottaope
+  tasks:
+    - name: Desproteger /etc/resolv.conf
+      command: "chattr -i /etc/resolv.conf"
+
+- name: Atualizar o /etc/resolv.conf depois do DNS
+  hosts: iottaint iottaapl iottaope
+  tasks:
+     - name: Atualizar resolv.conf
+       copy: src=etc/dns.conf dest=/etc/resolv.conf
+
+- name: Proteger resolv.conf
+  hosts: iottaint iottaapl iottaope
+  tasks:
+    - name: Proteger resolv.conf com somente leitura
+      command: "chattr +i /etc/resolv.conf"

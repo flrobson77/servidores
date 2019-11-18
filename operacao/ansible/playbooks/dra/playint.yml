@@ -1,0 +1,14 @@
+---
+#Uso de instrucao para repeticao de tarefas
+
+- name: Instalação do pacotes importantes
+  hosts: iottaint
+  tasks:
+    - apt: name={{ item }} update_cache=yes state=present
+      with_items:
+        - bind9
+        - bind9utils
+        - dnsutils
+        - git
+        - ntp
+        - ntpdate
