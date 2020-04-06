@@ -1,0 +1,15 @@
+---
+#Configuracao padrao do pool gamma.br
+- name: Instalação do serviço samba como dominio
+  hosts: pdcsamba
+  tasks:
+   - name: atualizar o repositorio
+     apt: update_cache=yes
+
+   - name: instalando programas
+     apt: name={{ item }} state=latest
+     with_items:
+      - samba
+      - smbclient
+      - dnsutils
+      - winbind

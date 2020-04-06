@@ -1,0 +1,6 @@
+---
+# tasks file for samba
+
+- name: instalacao dos pacotes
+  apt: name={{ item }}  update-cache=yes state=latest
+

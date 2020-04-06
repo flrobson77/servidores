@@ -1,0 +1,24 @@
+---
+# tasks file for docker
+
+- name: Instalando dependencias
+  apt: name={{ item }} update_cache=yes state=present
+  with_items:
+   - apt-transport-https
+   - ca-certificates
+   - curl
+   - gnupg2
+   - software-properties-common
+
+- name: Incluir a chave do repositorio
+  apt_key: 
+   url: https://download.docker.com/linux/debian/gpg
+   state: present
+
+- name: Incluir o repositorio do docker-engine
+  apt_repository:
+   repo: "deb [arch=amd64] https://download.docker.com/linux/debian {{ ansible_distribution_release }} stable"
+   state: present
+ 
+- name: Instalando o docker
+  apt: name=docker-ce update_cache=yes state=present

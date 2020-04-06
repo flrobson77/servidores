@@ -1,0 +1,8 @@
+---
+#Meu primeiro playbook
+
+- name: Meu primeiro playbok
+  hosts: all
+  tasks:
+     - name: Atualizar resolv.conf
+       copy: src=resolv.conf dest=/etc/resolv.conf

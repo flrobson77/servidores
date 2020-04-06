@@ -42,25 +42,3 @@
 
 #db-[99:101]-node.example.com
 
-#Minha Rede
-[operacao]
-10.0.0.1
-
-[gateway]
-10.0.0.101
-
-[devops]
-10.0.0.102
-
-[homologacao]
-10.0.0.103
-
-[automacao]
-10.0.0.104
-
-[validacao]
-10.0.0.105
-
-[pdcsamba]
-10.0.0.106
-

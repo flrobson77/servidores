@@ -1,0 +1,6 @@
+---
+- name: Criando a infra devops
+  hosts: devops
+  roles:
+    - puppet
+    

@@ -1,0 +1,42 @@
+---
+#Configuracao padrao do pool gamma.br
+
+- name: Desproteger resolv.conf
+  hosts: all
+  tasks:
+    - command: "chattr -i /etc/resolv.conf"
+
+- name: Atualizar resolv.conf
+  hosts: all
+  tasks:
+     - copy: src=resolv.conf dest=/etc/resolv.conf
+
+- name: Proteger resolv.conf
+  hosts: all
+  tasks:
+    - command: "chattr +i /etc/resolv.conf"
+
+- name: alterar os arquivos motd
+  hosts: all
+  tasks:
+     - copy: src=motd dest=/etc/motd
+       
+- name: alterar os arquivos issue
+  hosts: all
+  tasks:
+     - copy: src=issue dest=/etc/issue
+
+- name: alterar os arquivos issue.net
+  hosts: all
+  tasks:
+     - copy: src=issue.net dest=/etc/issue.net
+
+- name: alterar o arquivo do repositorio
+  hosts: all
+  tasks:
+     - copy: src=sources.list dest=/etc/apt/sources.list
+
+- name: atualizar o repositorio
+  hosts: all
+  tasks:
+    - apt: update_cache=yes

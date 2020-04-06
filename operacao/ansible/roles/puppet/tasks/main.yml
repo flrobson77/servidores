@@ -1,0 +1,27 @@
+---
+# tasks file for puppet
+
+#Usando quando for debian
+- name: Playbook de instalação do PUPPET
+  get_url:
+   url: http://apt.puppetlabs.com/puppetlabs-release-pc1-{{ ansible_distribution_release }}.deb
+   dest: /tmp/puppetlabs.deb
+
+- name: adicionando chave do repositorio
+  apt_key:
+   url: https://apt.puppetlabs.com/DEB-GPG-KEY-puppetlabs
+   state: present
+
+- name: instalando o repositorio PUPPET
+  apt:
+   deb: /tmp/puppetlabs.deb
+   state: present
+
+- name: Instalando os pacotes PUPPET
+  apt: name={{ item }} update_cache=yes state=present
+  with_items:
+   - puppet-common
+   - puppet
+   - puppet-agent
+   - facter
+   - puppet-lint

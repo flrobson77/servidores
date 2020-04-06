@@ -1,0 +1,6 @@
+---
+- name: Instalando a estrutura docker
+  hosts: controle
+  roles:
+    - rundeck
+    - jenkins

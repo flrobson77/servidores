@@ -1,0 +1,11 @@
+10.0.0.1    operacao.gamma.br    operacao
+
+10.0.0.101  gateway.gamma.br     gateway   
+10.0.0.102  devops.gamma.br      devops
+10.0.0.103  automacao.gamma.br   automacao
+10.0.0.104  homologacao.gamma.br homologacao
+10.0.0.105  validacao.gamma.br   validacao
+10.0.0.106  pdcsamba.gamma.br    pdcsamba
+
+10.0.0.111  webprod01.gamma.br   webprod01
+10.0.0.112  webprod02.gamma.br   webprod02
