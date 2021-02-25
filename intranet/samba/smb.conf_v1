@@ -1,0 +1,17 @@
+#Configurações Globais
+[global]
+workgroup = BETA
+netbios name = betacorp
+server string = Servidor de Arquivos
+wins support = yes
+
+# Compartilhamento
+[publico]
+path = /srv/betacorp/publico
+browseable = yes
+writable = yes
+force user = betacorp
+force group = users
+force create mode = 2664
+force directory mode = 2775
+guest ok = no
