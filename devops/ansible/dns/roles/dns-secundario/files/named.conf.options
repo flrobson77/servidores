@@ -1,0 +1,83 @@
+// Arquivo named.conf.options
+// Adaptado por Prof. Robson Lopes
+// Agradecimentos a comunidade e aos meus instrutores
+// Versão atualiza em 20240504
+
+// Localhost
+acl local {
+    127.0.0.1;
+    ::1;
+};
+
+// hosts que tem autorização para usar este servidor na consulta
+acl hosts {
+    192.168.200.101;
+    192.168.200.102;
+    192.168.200.103;
+    192.168.200.151;
+    192.168.200.111;
+    192.168.200.112;
+    192.168.200.113;
+};
+
+acl wan {
+    200.0.113.111;
+    200.0.113.112;
+};
+
+acl minharede {
+    192.168.200.0/24;
+};
+
+options {
+    //Diretorios dos arquivos das zonas de dominios hospedadas neste servidor
+	directory "/var/cache/bind";
+    
+    // Os DNS Servers que este servidor usa para encontrar um dominio que não encontrar e guarda no cache
+
+	forwarders {
+	 	10.0.0.1;
+        4.2.2.2;
+       	8.8.8.8;
+       	1.1.1.1;
+	};
+    
+    //Habilita DNSSEC
+    dnssec-validation auto;
+
+    
+    //Coloca a porta DNS em estado de listening para IPv4 e IPv6
+	listen-on { any; };
+	listen-on-v6 { any; };
+    
+    //Altera o banner do servidor Bind
+    version "Informacao nao autorizada";
+ 
+    //Configuracoes para determinar como e por que o serviço pode ser usado
+    //Determina quem pode usar este servidor para pequisa
+	allow-query { local; hosts; };
+    
+    //Determinando quem pode usar este servidor cDNS com Recursividade
+	allow-recursion { local; hosts; };
+    
+    //Determinando que pode usar o cache interno deste servidor DNS
+	allow-query-cache { local; hosts; };
+    
+    //Parametros de performance do Servidor DNS
+    max-cache-size 128M;
+    recursive-clients 3000;
+    tcp-clients 500;
+
+    //Quem pode realizar transferência de zona
+    allow-transfer { none; };
+    notify yes;
+
+    //Protecao conta ataques de amplificação
+    rate-limit {
+        responses-per-second 10;
+        window 5;
+        errors-per-second 5;
+        all-per-second 1000;
+        nxdomains-per-second 5;
+    };
+};

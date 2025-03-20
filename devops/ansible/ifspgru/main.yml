@@ -1,0 +1,5 @@
+- hosts: all
+  become: yes
+  user: sysadmin
+  roles:
+    - { role: container-ifspgru, tags: ["container_ifspgru_role"] }

@@ -1,0 +1,5 @@
+- hosts: secundario
+  become: yes
+  user: sysadmin
+  roles:
+    - { role: dns-secundario, tags: ["dns_secundario_role"] }

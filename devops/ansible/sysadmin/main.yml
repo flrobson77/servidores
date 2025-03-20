@@ -1,0 +1,5 @@
+- hosts: all
+  become: yes
+  user: sysadmin
+  roles:
+    - { role: rot-admins, tags: ["rotinas_administrativas_role"] }

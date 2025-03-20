@@ -1,0 +1,16 @@
+---
+- name: Atualizar a lista de pacotes no Debian 12
+  hosts: all
+  become: yes
+  become_method: sudo
+  tasks:
+    - name: Atualizar o arquivo /etc/hosts
+      copy: src=../../etc_config/hosts dest=/etc/hosts
+
+    - name: Atualizar o /etc/apt/sources.list
+      copy: src=../../etc_config/sources.list dest=/etc/apt/sources.list
+
+    - name: Atualizar o cache de pacotes APT
+      apt:
+        update_cache: yes
+        cache_valid_time: 300

@@ -1,0 +1,31 @@
+---
+- name: Instalar e configurar o NTP nos cliente da IFSPGRU.br
+  hosts: clientes
+  become: yes
+  tasks:
+  - name: Coleta sobre os pacotes instalados
+    package_facts:
+      manager: auto
+  
+  - name: Instalar o servidor NTP
+    apt: 
+      name: ntp
+      update_cache: yes
+      state: present
+    when: "'ntp' not in ansible_facts.packages"  
+    
+  - name: Instalar a ferramenta ntpdate
+    apt: 
+      name: ntpdate
+      update_cache: yes
+      state: present
+    when: "'ntpdate' not in ansible_facts.packages"  
+
+  - name: Substituindo o arquivo ntp.conf pelo ntpcliente local
+    copy: src=../../etc_config/ntpcliente.conf dest=/etc/ntpsec/ntp.conf
+      
+  - name: Reiniciar o serviço ntp
+    systemd:
+      name: ntp
+      state: restarted
+      enabled: yes

@@ -1,0 +1,80 @@
+---
+# tasks file for rot-admins
+- name: Informar hostname
+  debug:
+    msg: "Você está em {{ ansible_hostname }}"
+  notify: Reinciar NTP
+
+- name: Sincronizando e atualizando hora
+  block:
+    - name: Verificar se o NTP está sicronizado
+      command: ntpq -c pe
+      register: ntpq_result
+      failed_when: ntpq_result.rc != 0 and 'not found' not in ntpq_result.stderr
+      changed_when: False
+
+  rescue:
+    - name: Atualizar hora usando ntpdate
+      command: ntpdate -u 192.168.200.101
+
+- name: Exibir data e hora atual
+  command: date
+  register: current_date
+  changed_when: False
+
+- name: Mostrar data e hora
+  debug:
+    msg: "Hoje é: {{ current_date.stdout }}"
+
+- name: Testar a conectividade com a infra da ifspgru.br
+  block:
+    - name: Testando a conectividade com a FIREGATE
+      ping:
+        data: "192.168.200.101"
+      register: firegate_ping
+      changed_when: False
+
+    - name: Testando a conectividade com a EMAILDNS1
+      ping:
+        data: "192.168.200.102"
+      register: emaildns1_ping
+      changed_when: False
+
+    - name: Testando a conectividade com a FILESDNS2
+      ping:
+        data: "192.168.200.103"
+      register: filesdns2_ping
+      changed_when: False
+    
+    - name: Testando a conectividade com a EMAILSERVER
+      ping:
+        data: "192.168.200.105"
+      register: emailserver_ping
+      changed_when: False
+
+    - name: Testando a conectividade com a WEBSERVER01
+      ping:
+        data: "192.168.200.111"
+      register: webserver01_ping
+      changed_when: False
+
+- name: Testando acesso a Internet
+  shell: ping 4.2.2.2 -qc1
+  register: internet_ping
+  ignore_errors: True
+  changed_when: False
+
+- name: Atualizar repositorio se internet estiver UP
+  block:
+    - name: Atualizar repositorio
+      apt:
+        update_cache: yes
+        upgrade: dist
+        autoremove: yes
+        autoclean: yes
+  when: internet_ping.rc == 0
+
+- name: Verificar configurações se internet estiver DOWN
+  debug:
+    msg: "Verifique configuração da rede."
+  when: internet_ping.rc != 0

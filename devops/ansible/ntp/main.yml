@@ -1,0 +1,4 @@
+- hosts: clientes
+  become: yes
+  roles:
+  - ntp_clientes

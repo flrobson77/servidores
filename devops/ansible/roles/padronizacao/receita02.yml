@@ -1,0 +1,14 @@
+---
+#Meu primeiro playbook
+- name: Padronizando a configuração do DNS
+  hosts: all
+  become: yes
+  tasks:
+    - name: Desproteger o arquivo /etc/resolv.conf
+      command: "chattr -i /etc/resolv.conf"
+
+    - name: Atualizar resolv.conf
+      copy: src=../../etc_config/resolv.conf dest=/etc/resolv.conf
+
+    - name: Proteger resolv.conf
+      command: "chattr +i /etc/resolv.conf"

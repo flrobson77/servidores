@@ -1,0 +1,37 @@
+include "/etc/bind/rndc.key";
+controls {
+	inet 127.0.0.1 port 953 allow { localhost; } keys { "rndc-key"; };
+};
+
+acl "lcifspgru" {
+	192.168.200.0/24;
+};
+
+//view "externa" {
+//    match-clients { !lcifspgrue; any; };
+//    zone "ifspgru.br" {
+//	type slave;
+//      file "db.ifspgru.ext";
+//	masters { dnsmaster; };
+//    };
+//    
+//    zone "0.0.200.in-addr.arpa" {
+//      type slave;
+//      file "rv.200.0.0.ext";
+//	masters { dnsmaster; };
+//    };
+//};
+
+view "interna" {
+	match-clients { lcifspgru; !any; };
+	zone "ifspgru.br" {
+	type slave;
+        file "db.ifspgru.int";
+        masters { 192.168.200.102; };
+    };
+    zone "200.168.192.in-addr.arpa" {
+        type slave;
+        file "rv.192.168.200.int";
+	    masters { 192.168.200.102; };
+    };
+};

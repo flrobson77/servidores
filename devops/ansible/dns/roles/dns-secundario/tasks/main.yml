@@ -1,0 +1,31 @@
+---
+# tasks file for dns-secundario
+- name: Instalando pacotes para o servidor DNS Secundario
+  apt:
+    name:
+      - bind9
+      - bind9utils
+      - dnsutils
+    state: present
+    update_cache: yes
+- name: Copiando arquivo de configuração named.conf.local
+  copy:
+    src: ../files/named.conf.local
+    dest: /etc/bind/named.conf.local
+- name: Copiando arquivo de configuração named.conf.default-zones
+  copy:
+    src: ../files/named.conf.default-zones
+    dest: /etc/bind/named.conf.default-zones
+- name: Copiando arquivo de configuração named.conf
+  copy:
+    src: ../files/named.conf
+    dest: /etc/bind/named.conf
+- name: Copiando arquivo de configuração de transferencia tsig.key
+  copy:
+    src: ../files/tsig.key
+    dest: /etc/bind/tsig.key
+- name: Copiando arquivo de configuração named.conf.options
+  copy:
+    src: ../files/named.conf.options
+    dest: /etc/bind/named.conf.options
+  notify: Reiniciar Bind9

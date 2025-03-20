@@ -1,0 +1,16 @@
+#atualizado via ansible
+127.0.0.1	localhost
+
+# The following lines are desirable for IPv6 capable hosts
+::1     localhost ip6-localhost ip6-loopback
+ff02::1 ip6-allnodes
+ff02::2 ip6-allrouters
+
+192.168.200.151	operacao.ifspgru.br	operacao
+192.168.200.101	firegate.ifspgru.br	firegate
+192.168.200.102	emaildns1.ifspgru.br	emaildns1
+192.168.200.103	filesdns2.ifspgru.br	filesdns2
+192.168.200.105 emailserver.ifspgru.br  emailserver
+192.168.200.111	webserver.ifspgru.br	webserver
+192.168.200.112	webserver02.ifspgru.br	webserver02
+192.168.200.113 webserver03.ifspgru.br	webserver03

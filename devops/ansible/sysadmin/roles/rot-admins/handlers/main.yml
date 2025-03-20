@@ -1,0 +1,6 @@
+---
+# handlers file for rot-admins
+- name: Reiniciar NTP
+  service:
+    name: ntpd
+    state: retarted

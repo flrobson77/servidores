@@ -1,0 +1,14 @@
+---
+#Uso de instrucao condicionais
+
+- name: Exemplo de existenia de arquivo
+  hosts: all
+
+  tasks:
+    - name: Testanto existencia de um arquivo
+      command: test -f /etc/profile.d/papodesysadmin
+      register: result
+      ignore_errors: yes
+    - name: Configurando variavel condicional
+      shell: echo "export PAPO=/var/papo" > /etc/profile.d/papodesysadmin
+      when: result.rc == 0

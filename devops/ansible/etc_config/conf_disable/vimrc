@@ -1,0 +1,79 @@
+""" Arquivo de configuracao do VIM personalizado
+
+" ##### Configuracoes básicas ######
+
+"Determina a codificação dos caracteres usada pelo Vim
+set encoding=utf-8
+
+"Desabilitar o comportamento Vi no Vim
+set nocompatible
+
+"Habilita as cores das sentencas do vim
+syntax on
+
+"Determina o tamanho do buffer dos ultomos comandos
+set history=50 
+
+"Configura as cores que ficam melhor com  background 
+"escuro=dark e claro=light
+set background=dark
+
+"Mostra o ultimo comando digitado na barra de comandos
+set showcmd
+
+"Exibe nome do arquivo no rodape da tela
+set title
+
+"Exibe no rodape a posicao horizontal e vertical do cursor
+"no modo de comando
+set ruler
+
+"Exibe o numero das linhas
+set number
+
+
+"Ao ativar esse item alguns plugin's (PHP, c, sh), habilita
+"identacao e cores baseado no tipo de arquivo editado pelo Vim.
+filetype plugin indent on
+
+
+" ##### Configuracao sobre busca #####
+
+"Habilita a nao distincao entre maiusculas e minusculas na busca
+set ignorecase
+
+"Sublina as palavras encontrada na busca
+set hlsearch
+
+"Habilita a possibilidade de substituir o estilo de uma palavra
+"De maiuscula para minuscula ou vice-versa
+set smartcase
+
+"Habilita a pesquisa incremental, conforme digita a palavra na busca
+"ele já inicia a pesquisa a partir do momento que começa a digitar
+set incsearch
+
+
+" ##### Configuracao de Formatacao e Tabulacao #####
+
+"A funcao tabstop determina o tamanho do primeiro <TAB> 
+set tabstop=4
+
+"Quando o <TAB> é inserido, utiliza espaços"
+set expandtab
+
+"A funcao shiftwidth tamanho do salto da funcao autoindent
+set shiftwidth=3
+
+"Habilita a identacao automatica
+set autoindent
+
+"Indica a quantidade de espaços a tecla <backspace> irá voltar
+set softtabstop=4
+
+"Configurar para que a tecla <backspace> respeite a autoindent, quebra
+"de linha e inicio de inserção
+set backspace=indent,eol,start
+
+"Indica o fechamento de parentes, colchetes ou chaves que foram abertas
+set showmatch

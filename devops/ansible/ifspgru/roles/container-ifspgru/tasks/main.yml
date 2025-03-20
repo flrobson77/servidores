@@ -1,0 +1,43 @@
+---
+# tasks file for container-ifspgru
+- name: Instalar pacotes necessarios
+  apt:
+    update_cache: yes
+    name: "{{ packages }}"
+    state: latest
+  vars:
+    packages:
+      - apt-transport-https
+      - ca-certificates
+      - curl
+      - software-properties-common
+      - gnupg2
+
+- name: Instalar o docker
+  shell: curl -fsSL https://get.docker.com | bash
+  register: docker_installation
+
+- name: Criar diretorio para site do NGINX
+  file:
+    path: /var/www/html
+    state: directory
+    mode: '2755'
+
+- name: Criando container do NGINX
+  docker_container:
+    name: nginx
+    image: nginx:latest
+    state: started
+    restart_policy: always
+    ports:
+      - "80:80"
+    volumes:
+      - /var/www/html:/usr/share/nginx/html
+    recreate: yes
+    pull: yes
+
+- name: Copiar arquivo index.html
+  copy:
+    src: ../files/index.html
+    dest: /var/www/html/index.html
+    mode: '0644'

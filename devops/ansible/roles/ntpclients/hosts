@@ -1,0 +1,13 @@
+[clientes]
+192.168.200.102
+192.168.200.103
+192.168.200.105
+192.168.200.111
+192.168.200.112
+192.168.200.113
+192.168.200.151
+
+[all:vars]
+ansible_user=sysadmin
+ansible_ssh_private_key_file=/home/sysadmin/.ssh/id_rsa
+ansible_python_interpreter=/usr/bin/python3

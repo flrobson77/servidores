@@ -1,0 +1,13 @@
+---
+#Uso de instrucao para repeticao de tarefas
+
+- name: Instalação do pacotes importantes
+  hosts: all
+  tasks:
+    - apt: name={{ item }} update_cache=yes state=present
+      with_items:
+        - dnsutils
+        - vlock
+        - htop
+        - tree
+

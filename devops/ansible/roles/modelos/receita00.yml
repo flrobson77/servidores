@@ -1,0 +1,19 @@
+---
+- name: Adicionar usuario ao sudoers
+  hosts: all
+  become: yes
+  tasks:
+    - name: Assegurar que o diretorio /etc/sudoers.d existe
+      file:
+        path: /etc/sudoers.d
+        state: directory
+        mode: '0755'
+
+    - name: Adicionar usuario específico ao sudoers
+      copy:
+        dest: "/etc/sudoers.d/90-ansible-users"
+        content: "sysadmin ALL=(ALL) NOPASSWD:ALL\n"
+        validate: 'visudo -cf %s'
+        mode: '0440'
+        owner: root
+        group: root
